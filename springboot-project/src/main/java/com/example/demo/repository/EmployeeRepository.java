@@ -9,11 +9,7 @@ import com.example.demo.model.Employee;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer>{
 
-	List<Employee> findByempname(String empName);
-
-	
-
-	
+	String findByempname(String empName);
 
 	
 
