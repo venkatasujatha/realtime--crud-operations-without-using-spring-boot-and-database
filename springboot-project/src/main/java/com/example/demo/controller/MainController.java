@@ -7,8 +7,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.apache.catalina.connector.Response;
-import org.apache.logging.log4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
@@ -21,7 +20,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;import org.yaml.snakeyaml.external.com.google.gdata.util.common.base.PercentEscaper;
+import org.springframework.web.bind.annotation.RestController;
+import org.yaml.snakeyaml.external.com.google.gdata.util.common.base.PercentEscaper;
+
 
 import com.example.demo.exception.IdNotFoundException;
 import com.example.demo.exception.NameNotFoundException;
@@ -30,10 +31,11 @@ import com.example.demo.model.Employee;
 import com.example.demo.repository.EmployeeRepository;
 import com.example.demo.service.CompanyService;
 
+
 @RestController
 public class MainController {
 	
-//private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+//private static final  Logger logger=Logger.getLogger(MainController.class);
 
 	@Autowired
 	private CompanyService companyService;
@@ -73,6 +75,7 @@ public class MainController {
 	  
 	@GetMapping("/get/{empid}")
 	public Object getById(@PathVariable int empid) throws IdNotFoundException {
+		//logger.info("get employee details");
 		return companyService.findById(empid);
 		
 	}
@@ -81,6 +84,7 @@ public class MainController {
 	@GetMapping("/get1/{empname}")
 	public String findByName(@PathVariable String empname) throws NameNotFoundException {
 		companyService.findByName(empname);
+		//logger.info("get employee details");
 		return "get";
 	}
 	
